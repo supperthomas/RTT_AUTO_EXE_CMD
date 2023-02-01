@@ -10,6 +10,8 @@
 
 #include "rtthread.h"
 #include "msh.h"
+#ifdef PKG_USING_RTT_AUTO_EXE_CMD
+#else
 #define RTT_AUTO_CMD_THREAD_STACK_SIZE 20480
 #define RTT_AUTO_CMD_THREAD_PRIORITY   10
 #define RTT_AUTO_INIT_TIME_MS  5000
@@ -23,7 +25,7 @@
 #define RTT_CMD_LOOP_2_DELAY_TIME 2000
 
 #define RTT_CMD_LOOP_TIME     3
-
+#endif
 
 typedef struct
 {
