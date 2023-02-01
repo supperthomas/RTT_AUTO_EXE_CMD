@@ -58,7 +58,7 @@ static void auto_cmd_thread_entry(void *parameter)
             rt_thread_mdelay(rtt_cmd_init_array[i].delay_time); 
         }
     }
- 
+ #ifdef RTT_CMD_LOOP_FLAG
     while(loop_time--)
     {  
         for(int i = 0;i < sizeof(rtt_cmd_loop_array)/sizeof(rtt_cmd_array);i++)
@@ -70,6 +70,7 @@ static void auto_cmd_thread_entry(void *parameter)
             }
         }
     }
+#endif
 }
 
 static int cmd_auto_exe(void)
