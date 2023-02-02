@@ -39,16 +39,17 @@ rtt_cmd_array rtt_cmd_init_array[]=
     {RTT_CMD_2_STR,RTT_CMD_2_DELAY}
 };
 
+#ifdef RTT_CMD_LOOP_FLAG
 rtt_cmd_array rtt_cmd_loop_array[]=
 {
     {RTT_CMD_LOOP_1_STR,RTT_CMD_LOOP_1_DELAY_TIME},
     {RTT_CMD_LOOP_2_STR,RTT_CMD_LOOP_2_DELAY_TIME}
 };
-
+#endif
 
 static void auto_cmd_thread_entry(void *parameter)
 {
-    rt_uint32_t loop_time = RTT_CMD_LOOP_TIME;
+
     rt_thread_mdelay(RTT_AUTO_INIT_TIME_MS);   
     for(int i = 0;i < sizeof(rtt_cmd_init_array)/sizeof(rtt_cmd_array);i++)
     {
@@ -58,7 +59,8 @@ static void auto_cmd_thread_entry(void *parameter)
             rt_thread_mdelay(rtt_cmd_init_array[i].delay_time); 
         }
     }
- #ifdef RTT_CMD_LOOP_FLAG
+#ifdef RTT_CMD_LOOP_FLAG
+    rt_uint32_t loop_time = RTT_CMD_LOOP_TIME;
     while(loop_time--)
     {  
         for(int i = 0;i < sizeof(rtt_cmd_loop_array)/sizeof(rtt_cmd_array);i++)
