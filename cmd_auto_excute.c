@@ -29,7 +29,7 @@
 
 typedef struct
 {
-    rt_uint8_t *cmd_string;       
+    char *cmd_string;       
     rt_uint32_t delay_time;
 } rtt_cmd_array;
 
